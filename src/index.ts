@@ -4,7 +4,8 @@ const prisma = new PrismaClient()
 
 async function main() {
     const allUsers = await prisma.user.findMany()
-    console.log(allUsers)
+    console.dir(allUsers, { depth: null } )
+    console.log("hello eart")
 }
 
 main()
