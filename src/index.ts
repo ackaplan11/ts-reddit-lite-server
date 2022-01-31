@@ -5,10 +5,16 @@ const prisma = new PrismaClient()
 
 async function main() {
     const app = express()
-    console.log(app)
-    const allUsers = await prisma.user.findMany()
-    console.dir(allUsers, { depth: null } )
-    console.log("hello eart")
+    app.listen(4000, () => {
+      console.log("server started on localhost:4000")
+    })
+    app.get('/feed', async (_, res) => {
+      const posts = await prisma.post.findMany({
+        where: { published: true },
+        include: { author: true },
+      })
+      res.json(posts)
+    })
 }
 
 main()

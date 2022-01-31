@@ -8,10 +8,16 @@ const express_1 = __importDefault(require("express"));
 const prisma = new client_1.PrismaClient();
 async function main() {
     const app = (0, express_1.default)();
-    console.log(app);
-    const allUsers = await prisma.user.findMany();
-    console.dir(allUsers, { depth: null });
-    console.log("hello eart");
+    app.listen(4000, () => {
+        console.log("server started on localhost:4000");
+    });
+    app.get('/feed', async (_, res) => {
+        const posts = await prisma.post.findMany({
+            where: { published: true },
+            include: { author: true },
+        });
+        res.json(posts);
+    });
 }
 main()
     .catch((e) => {
