@@ -18,6 +18,9 @@ async function main() {
         });
         res.json(posts);
     });
+    app.get('/', async (_, res) => {
+        res.json("hello");
+    });
 }
 main()
     .catch((e) => {
