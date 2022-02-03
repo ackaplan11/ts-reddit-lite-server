@@ -18,8 +18,7 @@ async function main() {
     })
     
     app.get('/', async (_, res) => {
-      
-      res.json("hello")
+      res.json('hello')
     })
 }
 
